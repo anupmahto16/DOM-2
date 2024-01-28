@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    #container {
+      margin: 20px auto;
+      width: 300px;
+      text-align: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"] {
+      width: 100px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="button"] {
+      margin: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    input[type="button"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <label>MIN: </label><input type="text" id="min" value="" readonly><br>
+    <label>MAX: </label><input type="text" id="max" value="" readonly><br><br>
+    <input type="text" id="score" placeholder="Score" readonly><br>
+    <input type="button" value="1" onclick="addToScore(1)">
+    <input type="button" value="2" onclick="addToScore(2)">
+    <input type="button" value="3" onclick="addToScore(3)"><br>
+    <input type="button" value="4" onclick="addToScore(4)">
+    <input type="button" value="5" onclick="addToScore(5)">
+    <input type="button" value="6" onclick="addToScore(6)"><br>
+    <input type="button" value="7" onclick="addToScore(7)">
+    <input type="button" value="8" onclick="addToScore(8)">
+    <input type="button" value="9" onclick="addToScore(9)"><br>
+    <input type="button" value="ENTER" onclick="updateLeaderboard()">
+    <br><br>
+  </div>
+
+  <script>
+    let currentScore = '';
+
+    function addToScore(number) {
+      currentScore += number;
+      document.getElementById('score').value = currentScore;
+    }
+
+    function updateLeaderboard() {
+      let score = parseInt(currentScore);
+
+      let min = parseInt(document.getElementById('min').value);
+      let max = parseInt(document.getElementById('max').value);
+
+      if (isNaN(min) || score < min) {
+        document.getElementById('min').value = score;
+      }
+
+      if (isNaN(max) || score > max) {
+        document.getElementById('max').value = score;
+      }
+
+      // Reset current score
+      currentScore = '';
+      document.getElementById('score').value = '';
+    }
+  </script>
+</body>
+</html>
